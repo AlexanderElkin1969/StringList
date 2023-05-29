@@ -9,7 +9,7 @@ public class StringListImpl implements StringList {
     private int size;
 
     public StringListImpl() {
-        storage = new String[10];
+        storage = new String[5];
     }
 
     public StringListImpl(int initSize) {
@@ -29,12 +29,12 @@ public class StringListImpl implements StringList {
         validateSize();
         validateItem(item);
         validateIndex(index);
-        if (index == size){
+        if (index == size) {
             storage[index] = item;
             size++;
             return item;
         }
-        System.arraycopy(storage, index, storage, index +1, size - index);
+        System.arraycopy(storage, index, storage, index + 1, size - index);
         storage[index] = item;
         size++;
         return item;
@@ -52,7 +52,7 @@ public class StringListImpl implements StringList {
     public String remove(String item) {
         validateItem(item);
         int index = indexOf(item);
-        if (index == -1){
+        if (index == -1) {
             throw new NotFoundElementException();
         }
         if (index != size - 1) {
@@ -88,7 +88,7 @@ public class StringListImpl implements StringList {
 
     @Override
     public int lastIndexOf(String item) {
-        for (int i = size -1; i >= 0 ; i--) {
+        for (int i = size - 1; i >= 0; i--) {
             if (storage[i].equals(item)) return i;
         }
         return -1;
@@ -126,20 +126,20 @@ public class StringListImpl implements StringList {
         return Arrays.copyOf(storage, size);
     }
 
-    private void validateItem(String item){
-        if (item == null){
+    private void validateItem(String item) {
+        if (item == null) {
             throw new NullItemException();
         }
     }
 
-    private void validateIndex(int index){
-        if (index < 0 || index > size){
+    private void validateIndex(int index) {
+        if (index < 0 || index > size) {
             throw new InvalidIndexException();
         }
     }
 
-    private void validateSize(){
-        if (size == storage.length){
+    private void validateSize() {
+        if (size == storage.length) {
             throw new StorageIsFullException();
         }
     }

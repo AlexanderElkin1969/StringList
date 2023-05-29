@@ -4,9 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class StringListImplTest {
 
@@ -48,18 +45,27 @@ class StringListImplTest {
 
     @Test
     void set() {
-        Assertions.assertEquals("Four", out.set( 1, "Four"));
+        Assertions.assertEquals("Four", out.set(1, "Four"));
         Assertions.assertEquals("One", out.get(0));
         Assertions.assertEquals("Four", out.get(1));
         Assertions.assertEquals("Three", out.get(2));
+        Assertions.assertEquals(3, out.size());
     }
 
     @Test
     void remove() {
+        Assertions.assertEquals("One", out.remove(0));
+        Assertions.assertEquals("Two", out.get(0));
+        Assertions.assertEquals("Three", out.get(1));
+        Assertions.assertEquals(2, out.size());
     }
 
     @Test
     void testRemove() {
+        Assertions.assertEquals("One", out.remove("One"));
+        Assertions.assertEquals("Two", out.get(0));
+        Assertions.assertEquals("Three", out.get(1));
+        Assertions.assertEquals(2, out.size());
     }
 
     @Test
@@ -96,6 +102,16 @@ class StringListImplTest {
 
     @Test
     void toArray() {
-        Assertions.assertArrayEquals( testStringList, out.toArray());
+        Assertions.assertArrayEquals(testStringList, out.toArray());
+    }
+
+    @Test
+    public void shouldThrowException() {
+        Assertions.assertThrows(InvalidIndexException.class, () -> out.remove(-1));
+        Assertions.assertThrows(NotFoundElementException.class, () -> out.remove("Four"));
+        Assertions.assertThrows(NullItemException.class, () -> out.add(null));
+        out.add("Four");
+        out.add("Five");
+        Assertions.assertThrows(StorageIsFullException.class, () -> out.add("Six"));
     }
 }
