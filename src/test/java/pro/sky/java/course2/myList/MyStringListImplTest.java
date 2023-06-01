@@ -4,10 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pro.sky.java.course2.myList.exception.InvalidIndexException;
-import pro.sky.java.course2.myList.exception.NotFoundElementException;
-import pro.sky.java.course2.myList.exception.NullItemException;
-import pro.sky.java.course2.myList.exception.StorageIsFullException;
+import pro.sky.java.course2.myList.exception.*;
 
 class MyStringListImplTest {
 

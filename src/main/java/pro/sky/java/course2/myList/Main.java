@@ -14,25 +14,25 @@ public class Main {
 
         int[] arr1;
 
-        arr1 = Arrays.copyOf(arr,arr.length);
+        arr1 = Arrays.copyOf(arr, arr.length);
         System.out.println("1. sortBubble");
         long start = System.currentTimeMillis();
         sortBubble(arr1);
-        System.out.println(System.currentTimeMillis()-start);
+        System.out.println(System.currentTimeMillis() - start);
 
-        arr1 = Arrays.copyOf(arr,arr.length);
+        arr1 = Arrays.copyOf(arr, arr.length);
         System.out.println("2. sortSelection");
         start = System.currentTimeMillis();
         sortSelection(arr1);
-        System.out.println(System.currentTimeMillis()-start);
+        System.out.println(System.currentTimeMillis() - start);
 
-        arr1 = Arrays.copyOf(arr,arr.length);
+        arr1 = Arrays.copyOf(arr, arr.length);
         System.out.println("2. sortInsertion");
         start = System.currentTimeMillis();
         sortInsertion(arr1);
-        System.out.println(System.currentTimeMillis()-start);
+        System.out.println(System.currentTimeMillis() - start);
 
-}
+    }
 
     public static void sortBubble(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {

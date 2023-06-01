@@ -14,7 +14,7 @@ public interface MyIntegerList {
     Integer set(int index, Integer item);
 
     // Удаление элемента. Вернуть удаленный элемент или исключение, если подобный элемент отсутствует в списке.
-    Integer remove(Integer item);
+    Integer removeItem(Integer item);
 
     // Удаление элемента по индексу. Вернуть удаленный элемент или исключение, если подобный элемент отсутствует в списке.
     Integer remove(int index);

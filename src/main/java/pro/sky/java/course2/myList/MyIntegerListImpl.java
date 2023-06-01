@@ -55,13 +55,17 @@ public class MyIntegerListImpl implements MyIntegerList {
     }
 
     @Override
-    public Integer remove(Integer item) {
+    public Integer removeItem(Integer item) {
         validateItem(item);
         int index = indexOf(item);
         if (index == -1) {
             throw new NotFoundElementException();
         }
-        return remove(index);
+        if (index != size - 1) {
+            System.arraycopy(storage, index + 1, storage, index, size - index - 1);
+        }
+        size--;
+        return item;
     }
 
     @Override
@@ -77,7 +81,8 @@ public class MyIntegerListImpl implements MyIntegerList {
 
     @Override
     public boolean contains(Integer item) {
-        return indexOf(item) != -1;
+        Integer[] arr = Arrays.copyOf(storage, size);
+        return binarySearch(arr, item);
     }
 
     @Override
@@ -127,15 +132,33 @@ public class MyIntegerListImpl implements MyIntegerList {
         return Arrays.copyOf(storage, size);
     }
 
-    private void sort(){
-        for (int i = 1; i < size; i++) {
-            int temp = storage[i];
+    private boolean binarySearch(Integer[] arr, Integer item) {
+        sort(arr);
+        int min = 0;
+        int max = arr.length - 1;
+        while (min <= max) {
+            int mid = (min + max) / 2;
+            if (item.equals(arr[mid])) {
+                return true;
+            }
+            if (item < arr[mid]) {
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+        return false;
+    }
+
+    private void sort(Integer[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            Integer temp = arr[i];
             int j = i;
-            while (j > 0 && storage[j - 1] >= temp) {
-                storage[j] = storage[j - 1];
+            while (j > 0 && arr[j - 1] >= temp) {
+                arr[j] = arr[j - 1];
                 j--;
             }
-            storage[j] = temp;
+            arr[j] = temp;
         }
     }
 
