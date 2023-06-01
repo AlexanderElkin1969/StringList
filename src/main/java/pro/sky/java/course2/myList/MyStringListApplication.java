@@ -1,13 +1,13 @@
-package pro.sky.java.course2.stringlist;
+package pro.sky.java.course2.myList;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StringListApplication {
+public class MyStringListApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(StringListApplication.class, args);
+        SpringApplication.run(MyStringListApplication.class, args);
     }
 
 }
