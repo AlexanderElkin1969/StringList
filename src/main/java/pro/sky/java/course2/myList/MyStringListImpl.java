@@ -1,18 +1,23 @@
-package pro.sky.java.course2.stringlist;
+package pro.sky.java.course2.myList;
+
+import pro.sky.java.course2.myList.exception.InvalidIndexException;
+import pro.sky.java.course2.myList.exception.NotFoundElementException;
+import pro.sky.java.course2.myList.exception.NullItemException;
+import pro.sky.java.course2.myList.exception.StorageIsFullException;
 
 import java.util.Arrays;
 
-public class StringListImpl implements StringList {
+public class MyStringListImpl implements MyStringList {
 
     private final String[] storage;
 
     private int size;
 
-    public StringListImpl() {
+    public MyStringListImpl() {
         storage = new String[5];
     }
 
-    public StringListImpl(int initSize) {
+    public MyStringListImpl(int initSize) {
         storage = new String[initSize];
     }
 
@@ -55,11 +60,7 @@ public class StringListImpl implements StringList {
         if (index == -1) {
             throw new NotFoundElementException();
         }
-        if (index != size - 1) {
-            System.arraycopy(storage, index + 1, storage, index, size - index - 1);
-        }
-        size--;
-        return item;
+        return remove(index);
     }
 
     @Override
@@ -101,7 +102,7 @@ public class StringListImpl implements StringList {
     }
 
     @Override
-    public boolean equals(StringList otherList) {
+    public boolean equals(MyStringList otherList) {
         return Arrays.equals(this.toArray(), otherList.toArray());
     }
 
@@ -112,8 +113,7 @@ public class StringListImpl implements StringList {
 
     @Override
     public boolean isEmpty() {
-        if (size == 0) return true;
-        return false;
+        return size == 0;
     }
 
     @Override

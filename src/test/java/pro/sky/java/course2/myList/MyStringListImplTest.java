@@ -1,15 +1,19 @@
-package pro.sky.java.course2.stringlist;
+package pro.sky.java.course2.myList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pro.sky.java.course2.myList.exception.InvalidIndexException;
+import pro.sky.java.course2.myList.exception.NotFoundElementException;
+import pro.sky.java.course2.myList.exception.NullItemException;
+import pro.sky.java.course2.myList.exception.StorageIsFullException;
 
-class StringListImplTest {
+class MyStringListImplTest {
 
     private final String[] testStringList = {"One", "Two", "Three"};
 
-    private final StringListImpl out = new StringListImpl();
+    private final MyStringListImpl out = new MyStringListImpl();
 
     @BeforeEach
     void setUp() {

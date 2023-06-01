@@ -1,10 +1,10 @@
-package pro.sky.java.course2.stringlist;
+package pro.sky.java.course2.myList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StringListApplicationTests {
+class MyStringListApplicationTests {
 
     @Test
     void contextLoads() {

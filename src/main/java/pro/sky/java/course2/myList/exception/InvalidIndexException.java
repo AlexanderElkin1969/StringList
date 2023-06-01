@@ -1,4 +1,4 @@
-package pro.sky.java.course2.stringlist;
+package pro.sky.java.course2.myList.exception;
 
 public class InvalidIndexException extends RuntimeException {
 
