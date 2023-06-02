@@ -13,24 +13,39 @@ public class Main {
         }
 
         int[] arr1;
+        int[] arr2;
 
         arr1 = Arrays.copyOf(arr, arr.length);
         System.out.println("1. sortBubble");
         long start = System.currentTimeMillis();
         sortBubble(arr1);
         System.out.println(System.currentTimeMillis() - start);
+        arr2 = Arrays.copyOf(arr1,10);
+        System.out.println(Arrays.toString(arr2));
 
         arr1 = Arrays.copyOf(arr, arr.length);
         System.out.println("2. sortSelection");
         start = System.currentTimeMillis();
         sortSelection(arr1);
         System.out.println(System.currentTimeMillis() - start);
+        arr2 = Arrays.copyOf(arr1,10);
+        System.out.println(Arrays.toString(arr2));
 
         arr1 = Arrays.copyOf(arr, arr.length);
-        System.out.println("2. sortInsertion");
+        System.out.println("3. sortInsertion");
         start = System.currentTimeMillis();
         sortInsertion(arr1);
         System.out.println(System.currentTimeMillis() - start);
+        arr2 = Arrays.copyOf(arr1,10);
+        System.out.println(Arrays.toString(arr2));
+
+        arr1 = Arrays.copyOf(arr, arr.length);
+        System.out.println("4. quickSort");
+        start = System.currentTimeMillis();
+        quickSort(arr1,0, 99_999);
+        System.out.println(System.currentTimeMillis() - start);
+        arr2 = Arrays.copyOf(arr1,10);
+        System.out.println(Arrays.toString(arr2));
 
     }
 
@@ -66,6 +81,26 @@ public class Main {
             }
             arr[j] = temp;
         }
+    }
+
+    public static void quickSort(int[] arr, int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(arr, begin, end);
+            quickSort(arr, begin, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, end);
+        }
+    }
+    private static int partition(int[] arr, int begin, int end) {
+        int pivot = arr[end];
+        int i = (begin - 1);
+        for (int j = begin; j < end; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                swapElements(arr, i, j);
+            }
+        }
+        swapElements(arr, i + 1, end);
+        return i + 1;
     }
 
     private static void swapElements(int[] arr, int indexA, int indexB) {
