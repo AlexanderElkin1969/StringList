@@ -9,6 +9,7 @@ import pro.sky.java.course2.myList.exception.*;
 public class MyIntegerListImplTest {
 
     private final Integer[] testList = {35, 2, 10, 17, 5};
+    private final Integer[] sortList = { 2, 5, 10, 17, 35};
 
     private final MyIntegerListImpl out = new MyIntegerListImpl();
 
@@ -51,10 +52,27 @@ public class MyIntegerListImplTest {
     }
 
     @Test
-    void isEmptyAndClear() {
+    public void isEmptyAndClear() {
         Assertions.assertFalse(out.isEmpty());
         out.clear();
         Assertions.assertTrue(out.isEmpty());
+    }
+
+    @Test
+    public void addAndGrowTest(){
+        for (int i = 0; i < 10; i++) {
+            out.add((i * 3));
+        }
+        Assertions.assertEquals(13, out.size());
+    }
+
+    @Test
+    public void sortTest(){
+        out.add(17);
+        out.add(5);
+        Assertions.assertArrayEquals(testList, out.toArray());
+        out.sort();
+        Assertions.assertArrayEquals(sortList, out.toArray());
     }
 
     @Test
@@ -62,10 +80,6 @@ public class MyIntegerListImplTest {
         Assertions.assertThrows(NotFoundElementException.class, () -> out.removeItem(777));
         Assertions.assertThrows(InvalidIndexException.class, () -> out.remove(-1));
         Assertions.assertThrows(NullItemException.class, () -> out.add(null));
-        for (int i = 0; i < 7; i++) {
-            out.add((i * 3));
-        }
-        Assertions.assertThrows(StorageIsFullException.class, () -> out.add(777));
     }
 
 }
