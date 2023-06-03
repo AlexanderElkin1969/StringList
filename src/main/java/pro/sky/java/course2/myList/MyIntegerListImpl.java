@@ -23,10 +23,7 @@ public class MyIntegerListImpl implements MyIntegerList {
 
     @Override
     public Integer add(Integer item) {
-        validateSize();
-        validateItem(item);
-        storage[size++] = item;
-        return item;
+        return add(size, item);
     }
 
     @Override
